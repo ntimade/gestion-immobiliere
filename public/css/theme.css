@@ -1,0 +1,203 @@
+/*
+ * Style « brique » : terre cuite, ocre et brun chaud, en mode clair (par défaut) et sombre.
+ * Chargé après les autres feuilles sur les écrans seulement : les factures imprimées restent sur fond blanc.
+ */
+:root {
+    color-scheme: light;
+    --action: #b0452a;
+    --action-hover: #96371f;
+    --on-action: #fffaf5;
+    --field: #fffdf9;
+    --sunken: #f8f1e7;
+    --glass: rgba(255, 252, 247, .86);
+    --glass-strong: rgba(255, 252, 247, .94);
+    --brick-ink: #a8452a;
+    --brick-strength: 1;
+    --row-hover: rgba(176, 69, 42, .06);
+    --shadow: 0 1px 2px rgba(58, 34, 22, .08), 0 8px 22px rgba(58, 34, 22, .08);
+    --rim: inset 0 1px 0 rgba(255, 255, 255, .8);
+    --raised-edge: rgba(58, 24, 12, .28);
+    --raised-drop: rgba(120, 50, 26, .28);
+    --soft-drop: rgba(58, 34, 22, .12);
+    --title-font: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --action: #e8805f;
+    --action-hover: #f09474;
+    --on-action: #2a1410;
+    --field: #231815;
+    --sunken: #2f221d;
+    --glass: rgba(42, 30, 26, .86);
+    --glass-strong: rgba(42, 30, 26, .95);
+    --brick-ink: #e8805f;
+    --brick-strength: .8;
+    --row-hover: rgba(232, 128, 95, .08);
+    --primary: #e8805f;
+    --primary-dark: #f2a98f;
+    --primary-soft: #4a2a20;
+    --accent: #e0a64e;
+    --accent-soft: #43321a;
+    --navy: #15100e;
+    --navy-light: #241915;
+    --danger: #ff8a80;
+    --danger-soft: #4a2320;
+    --success: #9cc67a;
+    --success-soft: #2c3a20;
+    --warning: #e9b75a;
+    --warning-soft: #43351a;
+    --violet: #d2a6c4;
+    --violet-soft: #3e2a38;
+    --text: #f5ece3;
+    --text-soft: #bca99b;
+    --border: #453329;
+    --border-strong: #6e5648;
+    --bg-card: #2a1e1a;
+    --bg-page: #1c1412;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 20px rgba(0, 0, 0, .3);
+    --rim: inset 0 1px 0 rgba(255, 255, 255, .06);
+    --raised-edge: rgba(0, 0, 0, .28);
+    --raised-drop: rgba(0, 0, 0, .4);
+    --soft-drop: rgba(0, 0, 0, .3);
+}
+
+body { background-color: var(--bg-page); }
+
+/* Mur de briques en filigrane, sur les pages de connexion seulement : posé rangée par rangée par js/bricks.js. */
+.brick-wall { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; color: var(--brick-ink); }
+.brick-wall i { position: absolute; display: block; border-radius: 3px; background: currentColor; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .22), inset 0 -3px 0 rgba(0, 0, 0, .1); opacity: 0; transform: translateY(-22px) rotate(-1.2deg); transition: opacity .5s ease, transform .55s cubic-bezier(.2, .9, .3, 1.15); }
+.brick-wall i.laid { opacity: calc(var(--o, .1) * var(--brick-strength)); transform: none; }
+.brick-wall.instant i { transition: none; }
+.auth-page { position: relative; z-index: 1; }
+.lang-corner { z-index: 2; }
+
+@media (prefers-reduced-motion: reduce) {
+    .brick-wall i { transition: none; }
+}
+
+/* Titres */
+h1, .brand-name, .auth-brand h1 { font-family: var(--title-font); letter-spacing: -.01em; }
+h1 { font-size: 1.75rem; font-weight: 700; }
+.brand-name { font-size: 1.02rem; }
+.content h2, .auth-card h2 { font-family: var(--title-font); font-size: 1.16rem; font-weight: 700; letter-spacing: 0; }
+/* Devant chaque titre : deux briques décalées. */
+.content h2::before { width: 16px; height: 10px; margin-right: 9px; border-radius: 1px; vertical-align: 1px; background:
+    linear-gradient(var(--action), var(--action)) 0 0 / 10px 4px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) 6px 6px / 10px 4px no-repeat; }
+a { color: var(--primary-dark); }
+::placeholder { color: var(--text-soft); opacity: .8; }
+
+.card, .stat, .step, .auth-card { background: var(--bg-card); border-color: var(--border); box-shadow: var(--shadow), var(--rim); }
+/* Sur la connexion, le mur transparaît légèrement derrière le formulaire. */
+.auth-card { background: var(--glass-strong); }
+.card { border-radius: 14px; }
+.subpanel, .empty, .credentials { background: var(--sunken); border-color: var(--border); }
+.stat { border-top-width: 0; border-left: 5px solid var(--tone, var(--action)); border-radius: 12px; }
+.stats .stat:nth-child(5n+1) { --tone: var(--action); --tone-soft: var(--primary-soft); }
+.stats .stat:nth-child(5n+2) { --tone: var(--accent); --tone-soft: var(--accent-soft); }
+.stats .stat:nth-child(5n+3) { --tone: var(--success); --tone-soft: var(--success-soft); }
+.stats .stat:nth-child(5n+4) { --tone: var(--violet); --tone-soft: var(--violet-soft); }
+.stats .stat:nth-child(5n) { --tone: var(--warning); --tone-soft: var(--warning-soft); }
+.stats .stat.alert { --tone: var(--danger); --tone-soft: var(--danger-soft); }
+.stat strong { font-family: var(--title-font); font-size: 1.55rem; letter-spacing: 0; }
+@media (max-width: 640px) {
+    h1 { font-size: 1.45rem; }
+    .stat strong { font-size: 1.08rem; white-space: nowrap; }
+}
+
+/* Menu */
+.sidebar { background: linear-gradient(180deg, var(--navy), var(--navy-light)); box-shadow: 4px 0 20px rgba(40, 20, 12, .28); }
+.brand-logo { background: linear-gradient(135deg, var(--action), #d9782f); }
+.nav-link { color: #ecdfd3; transition: background-color .12s, color .12s, box-shadow .12s, transform .12s; }
+.nav-link .icon { color: #c4ab98; }
+.nav-link:hover:not(.active) { background: rgba(255, 255, 255, .08); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1); transform: translateX(2px); }
+.nav-link.active { background: linear-gradient(90deg, #b0452a, #c9622f); color: #fff; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .25), inset 0 -2px 0 rgba(0, 0, 0, .18), 0 5px 14px rgba(176, 69, 42, .45); }
+.nav-title { color: #b69c89; }
+.nav-count { background: #d9952f; color: #2a1410; }
+[data-theme="dark"] .sidebar { box-shadow: 1px 0 0 var(--border); }
+.topbar, .bottom-nav { background: var(--glass-strong); border-color: var(--border); backdrop-filter: blur(8px); }
+.topbar { box-shadow: 0 2px 10px var(--soft-drop); }
+.bottom-nav { box-shadow: 0 -2px 10px var(--soft-drop); }
+.topbar .icon-btn, .topbar-brand { color: var(--text); }
+.bottom-nav a { color: var(--text-soft); }
+.bottom-nav a.active { background: var(--primary-soft); color: var(--primary-dark); box-shadow: inset 0 -3px 0 var(--action); }
+.icon-btn:hover { background: var(--primary-soft); color: var(--text); }
+.support-bar { background: linear-gradient(90deg, var(--navy), var(--navy-light)); }
+
+/* Boutons : une seule couleur pour agir, avec le relief d'une brique. */
+.btn { background: var(--action); color: var(--on-action); border-radius: 8px; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .25), inset 0 -3px 0 var(--raised-edge), 0 3px 8px var(--raised-drop); transition: background-color .12s, border-color .12s, box-shadow .12s, transform .12s; }
+.btn:hover { background: var(--action-hover); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .25), inset 0 -3px 0 var(--raised-edge), 0 6px 14px var(--raised-drop); transform: translateY(-1px); }
+.btn:active { box-shadow: inset 0 2px 4px var(--raised-edge); transform: translateY(1px); }
+.btn.ghost { background: var(--field); border-color: var(--border-strong); color: var(--primary-dark); box-shadow: inset 0 -2px 0 var(--soft-drop), 0 1px 3px var(--soft-drop); }
+.btn.ghost:hover { background: var(--primary-soft); border-color: var(--action); box-shadow: inset 0 -2px 0 var(--soft-drop), 0 4px 10px var(--soft-drop); }
+.btn.danger { background: var(--field); border-color: var(--danger); color: var(--danger); box-shadow: inset 0 -2px 0 var(--soft-drop), 0 1px 3px var(--soft-drop); }
+.btn.danger:hover { background: var(--danger-soft); box-shadow: inset 0 -2px 0 var(--soft-drop), 0 4px 10px var(--soft-drop); }
+.lang-switch { background: var(--field); color: var(--primary-dark); }
+.lang-switch:hover { background: var(--primary-soft); }
+.sidebar .lang-switch { background: transparent; color: #ecdfd3; }
+
+@media (prefers-reduced-motion: reduce) {
+    .btn:hover, .btn:active, .nav-link:hover:not(.active), .step:hover { transform: none; }
+}
+
+/* Champs */
+input[type=text], input[type=email], input[type=password], input[type=number], input[type=date], input[type=month], input[type=search], input[type=tel], select, textarea { background: var(--field); border-color: var(--border-strong); color: var(--text); border-radius: 8px; }
+:where(input:not([type="checkbox"], [type="radio"]), select, textarea):not(:focus) { box-shadow: inset 0 1px 2px var(--soft-drop); }
+input:hover, select:hover { border-color: var(--action); }
+input:focus, select:focus, textarea:focus { border-color: var(--action); box-shadow: 0 0 0 3px rgba(176, 69, 42, .2); }
+input:disabled, select:disabled { background: var(--sunken); color: var(--text-soft); }
+input:-webkit-autofill { -webkit-text-fill-color: var(--text); box-shadow: inset 0 0 0 100px var(--field); caret-color: var(--text); }
+input[type=checkbox], input[type=radio] { accent-color: var(--action); }
+.field label.choice, .choice { background: var(--field); border-color: var(--border-strong); border-radius: 8px; }
+.choice:hover { border-color: var(--action); }
+.choice:has(input:checked), .field label.choice:has(input:checked) { background: var(--primary-soft); border-color: var(--action); color: var(--text); }
+.subnav a { background: var(--field); color: var(--primary-dark); }
+.subnav a:hover { background: var(--primary-soft); }
+.subnav a[aria-current="page"] { background: var(--action); border-color: var(--action); color: var(--on-action); }
+
+/* Tableaux */
+th { background: var(--sunken); color: var(--text-soft); }
+tr:has(td):hover td { background: var(--row-hover); }
+tr.selected td, tr.selected:hover td { background: var(--primary-soft); }
+.sort-link::after, .sort-btn::after { color: var(--text-soft); }
+th[aria-sort="ascending"] .sort-link::after, th[aria-sort="descending"] .sort-link::after, th[aria-sort="ascending"] .sort-btn::after, th[aria-sort="descending"] .sort-btn::after { color: var(--action); }
+table.stacked tr { background: var(--sunken); border-color: var(--border); }
+
+/* Messages et étiquettes */
+.flash { border-radius: 10px; }
+.flash.info, .preview { background: var(--accent-soft); border-color: var(--accent); color: var(--text); }
+.flash.success, .badge.ok { background: var(--success-soft); color: #33511f; }
+.flash.error, .badge.ko { background: var(--danger-soft); color: #8e201d; }
+.badge.partial { background: var(--warning-soft); color: #7c4804; }
+.badge.off { background: #efe6da; color: #6b574c; }
+[data-theme="dark"] .flash.success, [data-theme="dark"] .badge.ok { color: #cfe6b5; }
+[data-theme="dark"] .flash.error, [data-theme="dark"] .badge.ko { color: #ffc4bd; }
+[data-theme="dark"] .badge.partial { color: #ffd98a; }
+[data-theme="dark"] .badge.off { background: #453329; color: #d9c8ba; }
+[data-theme="dark"] .logout-switch { color: #ff8a80; }
+[data-theme="dark"] .logout-switch:hover { background: rgba(255, 138, 128, .14); border-color: #ff8a80; }
+
+/* Étapes des messages */
+.step { transition: box-shadow .12s, transform .12s, border-color .12s; }
+.step:hover { box-shadow: 0 2px 3px var(--soft-drop), 0 7px 16px var(--soft-drop), var(--rim); transform: translateY(-1px); }
+.step.active { background: var(--primary-soft); border-color: var(--action); box-shadow: inset 0 2px 5px var(--soft-drop); transform: none; }
+.step-number { background: var(--action); color: var(--on-action); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3), 0 2px 4px var(--raised-drop); }
+.step-count { background: var(--accent); color: #2a1410; }
+.step-count.empty-count { background: var(--sunken); color: var(--text-soft); }
+
+/* Carte */
+.leaflet-popup-content-wrapper, .leaflet-popup-tip { background: var(--bg-card); color: var(--text); }
+.leaflet-popup-content a { color: var(--primary-dark); }
+.leaflet-container a.leaflet-popup-close-button { color: var(--text); }
+
+/* Pages de connexion */
+.auth-logo { width: min(300px, 100%); mix-blend-mode: multiply; }
+[data-theme="dark"] .auth-logo { padding: 8px; border-radius: 12px; background: #fff; mix-blend-mode: normal; }
+@media (max-width: 640px) {
+    .auth-logo { width: min(240px, 100%); }
+}
+.auth-page .app-footer { background: var(--glass-strong); }
+
+/* Bouton désactivé : un envoi impossible ne doit pas ressembler à une action. */
+.btn:disabled, .btn:disabled:hover { background: var(--sunken); border-color: var(--border); color: var(--text-soft); box-shadow: none; cursor: not-allowed; opacity: .75; transform: none; }

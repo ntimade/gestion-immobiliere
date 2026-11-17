@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#2c1e1a">
+    <title>Pas de connexion — Gestion Immobilière</title>
+    <style>
+        :root { --text: #2a1e1a; --soft: #75625a; --bg: #f7f0e6; --card: #fffdf9; --primary: #b0452a; }
+        @media (prefers-color-scheme: dark) {
+            :root { --text: #f5ece3; --soft: #bca99b; --bg: #1c1412; --card: #2a1e1a; --primary: #e8805f; }
+        }
+        * { box-sizing: border-box; }
+        body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px 16px; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; text-align: center; }
+        main { width: 100%; max-width: 380px; padding: 32px 24px; border-radius: 20px; background: var(--card); box-shadow: 0 1px 2px rgba(11, 37, 69, .1), 0 16px 34px rgba(11, 37, 69, .12); }
+        img { width: 96px; height: 96px; border-radius: 22px; background: #fff; }
+        h1 { margin: 18px 0 8px; font-size: 1.3rem; }
+        p { margin: 0 0 6px; color: var(--soft); line-height: 1.5; }
+        button { margin-top: 18px; min-height: 44px; padding: 10px 22px; border: 0; border-radius: 10px; background: var(--primary); color: #fff; font: inherit; font-weight: 600; cursor: pointer; }
+    </style>
+</head>
+<body>
+<main>
+    <img src="/images/app/icon-192.png" alt="Gestion Immobilière">
+    <h1>Pas de connexion</h1>
+    <p>Vérifiez votre connexion Internet, puis réessayez.</p>
+    <p lang="en">No connection. Check your Internet access and try again.</p>
+    <button type="button" onclick="location.reload()">Réessayer</button>
+</main>
+</body>
+</html>

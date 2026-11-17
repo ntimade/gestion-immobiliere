@@ -1,0 +1,38 @@
+<?php
+
+// Complète les messages anglais de Laravel : noms lisibles des champs.
+return [
+    'before_or_equal' => 'The :attribute cannot be after :date.',
+    'attributes' => [
+        'name' => 'name',
+        'email' => 'email',
+        'password' => 'password',
+        'phone' => 'phone',
+        'address' => 'address',
+        'logo' => 'logo',
+        'code' => 'code',
+        'organisation_code' => 'organisation code',
+        'organisation_name' => 'organisation name',
+        'currency' => 'currency',
+        'price_per_m3' => 'm³ price',
+        'current_password' => 'current password',
+        'number' => 'number',
+        'customer_id' => 'customer',
+        'zone_id' => 'zone',
+        'meter_id' => 'meter',
+        'period' => 'month',
+        'current_index' => 'new index',
+        'initial_index' => 'starting index',
+        'read_at' => 'reading date',
+        'due_date' => 'due date',
+        'amount' => 'amount',
+        'paid_at' => 'payment date',
+        'method' => 'payment method',
+        'reference' => 'reference',
+        'notes' => 'note',
+        'latitude' => 'latitude',
+        'longitude' => 'longitude',
+        'installed_at' => 'installation date',
+        'description' => 'description',
+    ],
+];

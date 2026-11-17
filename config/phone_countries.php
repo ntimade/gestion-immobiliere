@@ -1,0 +1,35 @@
+<?php
+
+// Code ISO du pays => [nom, indicatif, le 0 de tête fait partie du numéro international].
+// Ajouter une ligne ici suffit pour proposer un pays dans les formulaires.
+return [
+    'CM' => ['Cameroun', '237', false],
+    'TD' => ['Tchad', '235', false],
+    'CF' => ['République centrafricaine', '236', false],
+    'CG' => ['Congo-Brazzaville', '242', true],
+    'CD' => ['République démocratique du Congo', '243', false],
+    'GA' => ['Gabon', '241', false],
+    'GQ' => ['Guinée équatoriale', '240', false],
+    'SN' => ['Sénégal', '221', false],
+    'CI' => ['Côte d\'Ivoire', '225', true],
+    'BJ' => ['Bénin', '229', true],
+    'BF' => ['Burkina Faso', '226', false],
+    'ML' => ['Mali', '223', false],
+    'NE' => ['Niger', '227', false],
+    'TG' => ['Togo', '228', false],
+    'GN' => ['Guinée', '224', false],
+    'BI' => ['Burundi', '257', false],
+    'RW' => ['Rwanda', '250', false],
+    'KM' => ['Comores', '269', false],
+    'DJ' => ['Djibouti', '253', false],
+    'MG' => ['Madagascar', '261', false],
+    'MA' => ['Maroc', '212', false],
+    'DZ' => ['Algérie', '213', false],
+    'TN' => ['Tunisie', '216', false],
+    'FR' => ['France', '33', false],
+    'BE' => ['Belgique', '32', false],
+    'CH' => ['Suisse', '41', false],
+    'GB' => ['Royaume-Uni', '44', false],
+    'CA' => ['Canada', '1', false],
+    'US' => ['États-Unis', '1', false],
+];

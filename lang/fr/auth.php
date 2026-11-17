@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'failed' => 'Code organisation, login ou mot de passe incorrect.',
+    'throttle' => 'Trop de tentatives. Réessayez dans :seconds secondes.',
+    'login' => 'Connexion',
+    'register' => 'Inscription',
+    'logout' => 'Déconnexion',
+    'email' => 'Adresse email',
+    'password' => 'Mot de passe',
+    'remember_me' => 'Se souvenir de moi',
+    'forgot_password' => 'Mot de passe oublié?',
+    'confirm_password' => 'Confirmer le mot de passe',
+    'name' => 'Nom',
+    'reset_password' => 'Réinitialiser le mot de passe',
+    'send_reset_link' => 'Envoyer le lien de réinitialisation',
+    'verify_email' => 'Vérifiez votre adresse email',
+    'verify_email_sent' => 'Un nouveau lien de vérification a été envoyé à votre adresse email.',
+    'check_verification_link' => 'Avant de continuer, veuillez vérifier votre email pour un lien de vérification.',
+    'not_receive_email' => 'Si vous n\'avez pas reçu l\'email',
+    'request_another' => 'cliquez ici pour en demander un autre',
+    'dashboard' => 'Tableau de bord',
+    'logged_in' => 'Vous êtes connecté!',
+    'profile' => 'Profil',
+    'settings' => 'Paramètres',
+];
